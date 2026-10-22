@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: 'Ubuntu', system-ui, sans-serif;
+
+  --color-caqui-50: #faf8f3;
+  --color-caqui-100: #f2ede1;
+  --color-caqui-200: #e5dbc4;
+  --color-caqui-300: #d4c39f;
+  --color-caqui-400: #c0a77a;
+  --color-caqui-500: #ab8f60;
+  --color-caqui-600: #94764d;
+  --color-caqui-700: #785e40;
+  --color-caqui-800: #634e38;
+  --color-caqui-900: #534231;
+  --color-caqui-950: #2e2318;
+}
+
+:root {
+  --ui-bg: #fbfaf6;
+  --ui-bg-muted: #f5f2ea;
+  --ui-bg-elevated: #f2ede1;
+  --ui-border: #e7e0cf;
+  --ui-radius: 0.375rem;
+}

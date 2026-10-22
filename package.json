@@ -1,0 +1,34 @@
+{
+  "name": "proyecto-nodo",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@date-fns/tz": "^1.5.0",
+    "@iconify-json/lucide": "^1.2.147",
+    "@nuxt/eslint": "1.17.0",
+    "@nuxt/ui": "4.12.0",
+    "@pinia/nuxt": "^1.0.3",
+    "date-fns": "^4.4.0",
+    "eslint": "^10.13.0",
+    "nuxt": "^4.6.2",
+    "pinia": "^4.1.0",
+    "tailwindcss": "^4",
+    "typescript": "^7.0.2",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "nub",
+      "version": "^0.9.7",
+      "onFail": "ignore"
+    }
+  }
+}
