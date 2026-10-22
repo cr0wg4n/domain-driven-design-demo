@@ -24,7 +24,7 @@ const rol = computed({
     v-model="rol"
     :items="opciones"
     size="sm"
-    class="w-48"
+    class="w-full lg:w-48"
     icon="i-lucide-circle-user-round"
     aria-label="Sesión"
   />

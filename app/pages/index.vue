@@ -102,12 +102,12 @@ onMounted(cargarPanel)
       <h1 class="text-2xl font-semibold">Hoy</h1>
       <p class="mt-1 text-muted">Resumen de los espacios de Nodo</p>
     </div>
-    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
       <PanelIndicador v-for="indicador in indicadoresDelDia" :key="indicador.etiqueta" v-bind="indicador" />
     </div>
     <div>
       <h2 class="mb-3 font-medium">Requiere atención</h2>
-      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <PanelIndicador
           v-for="pendiente in pendientes"
           :key="pendiente.etiqueta"

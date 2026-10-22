@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui'
-import { EstadoEnInventario } from '#inventario-espacios/shared/dominio/espacio'
 import type { DatosDeEspacio } from '#inventario-espacios/shared/dominio/espacio'
 import { NOMBRE_DE_TIPO } from '#inventario-espacios/shared/dominio/tipo-espacio'
 import InventarioAforoEditor from '#inventario-espacios/app/components/InventarioAforoEditor.vue'
+import InventarioTarjeta from '#inventario-espacios/app/components/InventarioTarjeta.vue'
+import { PRESENTACION_DE_ESTADO, estaDadoDeBaja, sePuedeHabilitar, textoDeBuffer } from '#inventario-espacios/app/utils/presentacion.util'
 
 interface InventarioTablaProps {
   espacios: DatosDeEspacio[]
@@ -27,24 +28,6 @@ const columnas: TableColumn<DatosDeEspacio>[] = [
   { id: 'acciones', header: '' }
 ]
 
-const PRESENTACION_DE_ESTADO: Record<EstadoEnInventario, { etiqueta: string, color: 'neutral' | 'success' | 'warning' }> = {
-  [EstadoEnInventario.REGISTRADO]: { etiqueta: 'Registrado', color: 'warning' },
-  [EstadoEnInventario.HABILITADO]: { etiqueta: 'Habilitado', color: 'success' },
-  [EstadoEnInventario.DADO_DE_BAJA]: { etiqueta: 'Dado de baja', color: 'neutral' }
-}
-
-function estaDadoDeBaja(espacio: DatosDeEspacio): boolean {
-  return espacio.estado === EstadoEnInventario.DADO_DE_BAJA
-}
-
-function sePuedeHabilitar(espacio: DatosDeEspacio): boolean {
-  return espacio.estado === EstadoEnInventario.REGISTRADO
-}
-
-function textoDeBuffer(espacio: DatosDeEspacio): string {
-  return espacio.bufferEnMinutos ? `${espacio.bufferEnMinutos} min` : 'Sin buffer'
-}
-
 function handleHabilitar(id: string): void {
   emit('habilitar', id)
 }
@@ -59,7 +42,17 @@ function handleDarDeBaja(id: string): void {
 </script>
 
 <template>
-  <UTable :data="espacios" :columns="columnas" class="rounded-md border border-default bg-default">
+  <ul class="space-y-2 md:hidden">
+    <li v-for="espacio in espacios" :key="espacio.id">
+      <InventarioTarjeta
+        :espacio="espacio"
+        @habilitar="handleHabilitar(espacio.id)"
+        @cambiar-aforo="handleCambiarAforo(espacio.id, $event)"
+        @dar-de-baja="handleDarDeBaja(espacio.id)"
+      />
+    </li>
+  </ul>
+  <UTable :data="espacios" :columns="columnas" class="hidden rounded-md border border-default bg-default md:block">
     <template #tipo-cell="{ row }">
       {{ NOMBRE_DE_TIPO[row.original.tipo] }}
     </template>

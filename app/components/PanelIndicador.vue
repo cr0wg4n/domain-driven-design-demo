@@ -13,7 +13,7 @@ defineProps<PanelIndicadorProps>()
 <template>
   <NuxtLink
     :to="destino"
-    class="flex items-center gap-4 rounded-md border bg-default p-4 transition-colors hover:bg-elevated"
+    class="flex flex-col items-start gap-2 rounded-md border bg-default p-3 transition-colors hover:bg-elevated sm:flex-row sm:items-center sm:gap-4 sm:p-4"
     :class="isDestacado ? 'border-warning/50' : 'border-default'"
   >
     <UIcon :name="icono" class="size-6 shrink-0" :class="isDestacado ? 'text-warning' : 'text-primary-500'" />

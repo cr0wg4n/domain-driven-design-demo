@@ -51,9 +51,9 @@ function handleReasignar(id: string, recursoId: string): void {
 
 <template>
   <div class="overflow-x-auto rounded-md border border-default bg-default">
-    <div class="min-w-[56rem]">
+    <div class="min-w-[52rem] lg:min-w-[56rem]">
       <div class="flex border-b border-default text-xs text-muted">
-        <div class="w-44 shrink-0 px-3 py-2 font-medium">Espacio</div>
+        <div class="sticky left-0 z-10 w-28 shrink-0 bg-default px-3 py-2 font-medium sm:w-44">Espacio</div>
         <div class="relative h-8 flex-1">
           <span
             v-for="(horaDelDia, indice) in HORAS"
@@ -68,8 +68,8 @@ function handleReasignar(id: string, recursoId: string): void {
         :key="recurso.recursoId"
         class="flex border-b border-default last:border-b-0"
       >
-        <div class="flex w-44 shrink-0 flex-col justify-center px-3 py-2">
-          <span class="truncate text-sm">{{ recurso.nombre }}</span>
+        <div class="sticky left-0 z-10 flex w-28 shrink-0 flex-col justify-center border-r border-default bg-default px-3 py-2 sm:w-44">
+          <span class="line-clamp-2 text-sm leading-tight">{{ recurso.nombre }}</span>
           <span v-if="!recurso.sePuedeReservar" class="text-xs text-warning">En mantenimiento</span>
         </div>
         <div

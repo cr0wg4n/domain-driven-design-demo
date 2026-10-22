@@ -36,6 +36,6 @@ function handleHoy(): void {
     <UButton icon="i-lucide-chevron-left" color="neutral" variant="outline" size="sm" aria-label="Día anterior" @click="handleAnterior" />
     <UButton label="Hoy" color="neutral" variant="outline" size="sm" :disabled="esHoy" @click="handleHoy" />
     <UButton icon="i-lucide-chevron-right" color="neutral" variant="outline" size="sm" aria-label="Día siguiente" @click="handleSiguiente" />
-    <span class="ml-2 inline-block font-medium first-letter:uppercase">{{ titulo }}</span>
+    <span class="ml-1 inline-block min-w-0 font-medium first-letter:uppercase sm:ml-2">{{ titulo }}</span>
   </div>
 </template>

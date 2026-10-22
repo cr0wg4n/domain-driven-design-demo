@@ -26,17 +26,19 @@ function handleAprobar(id: string): void {
 
 <template>
   <ul class="divide-y divide-default rounded-md border border-default bg-default">
-    <li v-for="solicitud in solicitudes" :key="solicitud.id" class="flex flex-wrap items-center gap-3 px-4 py-3">
+    <li v-for="solicitud in solicitudes" :key="solicitud.id" class="flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:gap-3">
       <div class="min-w-0 flex-1">
         <p class="font-medium">{{ solicitud.organizador }}</p>
         <p class="text-sm text-muted">{{ solicitud.asistentes }} personas, {{ NOMBRE_DE_BLOQUE[solicitud.bloque].toLowerCase() }}</p>
       </div>
-      <UBadge
-        :label="PRESENTACION_DE_SOLICITUD[solicitud.estado].etiqueta"
-        :color="PRESENTACION_DE_SOLICITUD[solicitud.estado].color"
-        variant="subtle"
-      />
-      <UButton v-if="sePuedeAprobar(solicitud)" label="Aprobar" size="xs" @click="handleAprobar(solicitud.id)" />
+      <div class="flex items-center gap-2">
+        <UBadge
+          :label="PRESENTACION_DE_SOLICITUD[solicitud.estado].etiqueta"
+          :color="PRESENTACION_DE_SOLICITUD[solicitud.estado].color"
+          variant="subtle"
+        />
+        <UButton v-if="sePuedeAprobar(solicitud)" label="Aprobar" size="xs" class="ml-auto sm:ml-0" @click="handleAprobar(solicitud.id)" />
+      </div>
     </li>
   </ul>
 </template>
