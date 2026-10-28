@@ -1,4 +1,4 @@
 import { defineEventHandler } from 'h3'
-import { listarEspaciosOperativos } from '#estado-operativo/server/utils/estado-operativo'
+import { estadoOperativoService } from '#estado-operativo/server/services/estado-operativo.service'
 
-export default defineEventHandler(() => listarEspaciosOperativos().map(espacio => espacio.aDatos()))
+export default defineEventHandler(() => estadoOperativoService.listar())

@@ -1,4 +1,4 @@
 import { defineEventHandler } from 'h3'
-import { listarEspacios } from '#inventario-espacios/server/utils/inventario'
+import { inventarioService } from '#inventario-espacios/server/services/inventario.service'
 
-export default defineEventHandler(() => listarEspacios().map(espacio => espacio.aDatos()))
+export default defineEventHandler(() => inventarioService.listar())

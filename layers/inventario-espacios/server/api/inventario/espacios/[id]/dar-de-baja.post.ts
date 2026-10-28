@@ -1,11 +1,5 @@
 import { defineEventHandler } from 'h3'
-import { publicar } from '#compartido/server/utils/bus-de-eventos'
-import { exigir, leerId, leerRol } from '#compartido/server/utils/comando'
-import { buscarEspacio } from '#inventario-espacios/server/utils/inventario'
+import { leerId, leerRol } from '#compartido/server/utils/comando'
+import { inventarioService } from '#inventario-espacios/server/services/inventario.service'
 
-export default defineEventHandler((event) => {
-  const espacio = buscarEspacio(leerId(event))
-  const evento = exigir(espacio.darDeBaja(leerRol(event)))
-  publicar(evento)
-  return evento
-})
+export default defineEventHandler(event => inventarioService.darDeBaja(leerId(event), leerRol(event)))

@@ -1,8 +1,8 @@
 import { defineNitroPlugin } from 'nitropack/runtime'
 import { alReiniciar, alSembrar } from '#compartido/server/utils/demo'
-import { sembrarInventario, vaciarInventario } from '#inventario-espacios/server/utils/inventario'
+import { inventarioService } from '#inventario-espacios/server/services/inventario.service'
 
 export default defineNitroPlugin(() => {
-  alReiniciar(vaciarInventario)
-  alSembrar(1, sembrarInventario)
+  alReiniciar(() => inventarioService.reiniciar())
+  alSembrar(1, () => inventarioService.sembrar())
 })

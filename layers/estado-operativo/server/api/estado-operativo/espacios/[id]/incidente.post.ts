@@ -1,16 +1,12 @@
 import { defineEventHandler } from 'h3'
-import { publicar } from '#compartido/server/utils/bus-de-eventos'
-import { exigir, leerCuerpo, leerId, leerRol } from '#compartido/server/utils/comando'
-import { buscarEspacioOperativo } from '#estado-operativo/server/utils/estado-operativo'
+import { leerCuerpo, leerId, leerRol } from '#compartido/server/utils/comando'
+import { estadoOperativoService } from '#estado-operativo/server/services/estado-operativo.service'
 
 interface ReporteDeIncidente {
   descripcion: string
 }
 
 export default defineEventHandler(async (event) => {
-  const espacio = buscarEspacioOperativo(leerId(event))
   const { descripcion } = await leerCuerpo<ReporteDeIncidente>(event)
-  const evento = exigir(espacio.registrarIncidente(descripcion ?? '', leerRol(event)))
-  publicar(evento)
-  return evento
+  return estadoOperativoService.registrarIncidente(leerId(event), descripcion ?? '', leerRol(event))
 })
